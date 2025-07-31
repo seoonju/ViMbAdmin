@@ -69,7 +69,10 @@
 
         if ( (linktext === null) || (linktext == undefined) ) linktext = link;
 
-        document.write("E-Mail: <a href='mailto:" + link + "'>" + linktext + "</a>");
+        // Sanitize the link and linktext before writing to the document
+        var sanitizedLink = DOMPurify.sanitize(link);
+        var sanitizedLinkText = DOMPurify.sanitize(linktext);
+        document.write("E-Mail: <a href='mailto:" + sanitizedLink + "'>" + sanitizedLinkText + "</a>");
     }
 
 
